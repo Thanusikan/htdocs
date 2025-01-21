@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student and Teacher Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            
+             background-attachment:scroll;
+            color: #333;
+        }
+        maing{
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+             
+             background-attachment:scroll;
+            color: #333;
+            
+
+         }
+        /* Navbar styling */
+        nav {
+            background-color: #707384;
+            padding: 0em 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        nav .logo {
+            width: 150px;
+            height: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            color: #FFD700;
+            text-decoration: underline;
+            transform: scale(1.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        nav .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        nav .hamburger i {
+            font-size: 2em;
+            color: white;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #007BFF;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                width: 200px;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav .hamburger {
+                display: block;
+            }
+        }
+
+        /* Main content styling */
+        main {
+            padding: 3em;
+            max-width: 1000px;
+            margin: auto;
+            
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        /* About section */
+        .about-section {
+            background-color: #f9f9f9;
+            padding: 2em;
+            margin-top: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-section h2 {
+            color: #007BFF;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .about-section p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Buttons styling */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .button-container button {
+            padding: 15px 30px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s, transform 0.3s ease-in-out;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            padding: 1.5em;
+            background-color: #080b0e;
+            color: white;
+            font-size: 1em;
+            margin-top: 3em;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Sign In Section */
+        .sign-in {
+            margin-top: 30px;
+            padding: 1.5em;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .sign-in input {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1.1em;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .sign-in button {
+            padding: 12px;
+            background-color: #0056b3;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .sign-in button:hover {
+            background-color: #003d7a;
+        }
+
+        .person-box {
+            display: inline-block;
+            width: 200px;
+            height: 300px;
+            margin: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden;
+            transform: translateX(-100%);
+            animation: moveRight 1s forwards;
+        }
+
+        @keyframes moveRight {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+        }
+
+        .person-box img {
+            width: 100%;
+            height: auto;
+        }
+
+        .person-box h3 {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #007BFF;
+        }
+
+        /* Notes section */
+        .notes-container {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .notes-container h2 {
+            font-size: 2em;
+            color: #007BFF;
+            margin-bottom: 15px;
+        }
+
+        .note-box {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f4f4f9;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .note-box button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .note-box button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Scroll Down Content */
+        .scroll-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 100px;
+            animation: slideInFromLeft 1.5s ease-in-out;
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .scroll-content iframe {
+            width: 100%;
+            height: 400px;
+        }
+
+    </style>
+</head>  <div class="maing"> 
+  <body>
+    <!-- Navbar -->
+    <nav>
+        <div class="navbar-container">
+            <!-- Logo -->
+            <img src="https://png.pngtree.com/png-clipart/20211009/original/pngtree-school-logo-png-image_6846798.png" alt="Logo" class="logo">
+            <!-- Hamburger Icon for mobile view -->
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <!-- Navbar Links -->
+            <ul id="navbar-links">
+                <li><a href="teacher.html"><i class="fas fa-chalkboard-teacher"></i> Teacher Page</a></li>
+                <li><a href="student.html"><i class="fas fa-user-graduate"></i> Student Page</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="signin.html"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
+                <li><a href="add.html"><i class="fas fa-plus-circle"></i> Add Students & Teachers</a></li>
+                <li><a href="gread.html"><i class="fas fa-graduation-cap"></i> Grade Levels</a></li>
+            </ul>
+        </div>
+    </nav>
+      <div style="background-image: url(https://media.istockphoto.com/id/1409722748/photo/students-raising-hands-while-teacher-asking-them-questions-in-classroom.jpg?s=612x612&w=0&k=20&c=NbVChOV9wIbQOhUD6BqpouZHHBbyQ2rkSjaVfIhpMv8=);"> 
+    <!-- Main content -->
+    <main>
+         
+        <h1>Welcome to the Student and Teacher Portal</h1>
+        <p>Please select a page from the navigation menu to get started.</p>
+
+        <!-- Buttons for Navigation -->
+        <div class="button-container">
+            <button onclick="window.location.href='teacher.html'"><i class="fas fa-chalkboard-teacher"></i> Teacher Page</button>
+            <button onclick="window.location.href='student.html'"><i class="fas fa-user-graduate"></i> Student Page</button>
+        </div>
+     
+        <!-- About Section -->
+        <div class="about-section">
+            <h2>About This Portal</h2>
+            <p>This portal serves as a platform for both students and teachers to interact, manage courses, download resources, and much more. We aim to provide an efficient and user-friendly experience for all users.</p>
+        </div>
+    </div>
+     
+</div>
+        
+      
+     
+ <div style="margin-left: 100px;">
+        <h1 style="margin-left: 100px;" >Welcome to the Student and Teacher Portal</h1>
+
+        <!-- Principal, Vice Principal, Manager, Teacher, and Student Images -->
+        <div class="person-box">
+            <img src="https://www.ccu.edu/blogs/cags/uploads/2018/01/school-principal-sitting-at-desk-in-office.jpg" alt="Principal">
+            <h3>Principal</h3>
+            <h5>Please select a page from the navigation menu to get started.<button style="  margin-left: 70px;margin-top: 10px;
+                background-color: #171a1d;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 1.2em;
+                transition: background-color 0.3s, transform 0.3s ease-in-out;
+                 
+                
+               ">More</button></h5>
+             
+        </div>
+        <div class="person-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDaAOPlxDXQkumv8o7UogMWPUCJBIQc_Mdwahc8FDkxZWNlyB6cT8PdzHQS4Ci4WpSMUE&usqp=CAU" alt="Vice Principal">
+            <h3>Vice Principal</h3>
+            <h5>Please select a page from the navigation menu to get started.<button style="  margin-left: 70px;margin-top: 10px;
+                background-color: #080a0c;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 1.2em;
+                transition: background-color 0.3s, transform 0.3s ease-in-out;
+                 
+                
+               ">More</button></h5>
+        </div>
+        <div class="person-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWd35_09Mu6Ho-_JiPjMvAJU7d_Xf2LWgyuD954ISwOfwgwsZOAiv9REJJPEXbVGDWy1o&usqp=CAU" alt="Manager">
+            <h3>Manager</h3>
+            <h5>Please select a page from the navigation menu to get started.<button style="  margin-left: 70px;margin-top: 10px;
+                background-color: #191b1e;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 1.2em;
+                transition: background-color 0.3s, transform 0.3s ease-in-out;
+                 
+                
+               ">More</button></h5>
+        </div>
+        <div class="person-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQer5Y3G5J_pbLux_MQfT5FCmF-kExtU3E2Bg&s" alt="Teacher">
+            <h3>Teacher</h3>
+            <h5>Please select a page from the navigation menu to get started.<button style="  margin-left: 70px;margin-top: 10px;
+                background-color: #0c0c0d;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 1.2em;
+                transition: background-color 0.3s, transform 0.3s ease-in-out;
+                 
+                
+               ">More</button></h5>
+        </div>
+        <div class="person-box">
+            <img src="data:image/jpeg;base64,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" alt="Student">
+            <h3>Student</h3>
+            <h5>Please select a page from the navigation menu to get started.<button style="  margin-left: 70px;margin-top: 10px;
+                background-color: #090a09;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 1.2em;
+                transition: background-color 0.3s, transform 0.3s ease-in-out;
+                 
+                
+               ">More</button></h5>
+        </div>
+    </div>
+        <!-- Notes Section -->
+        <div class="notes-container">
+            <h2>Student Notes</h2>
+            <div class="note-box">
+                <p>This is a sample student note.</p>
+                <button onclick="alert('Add New Note')">Add New Note</button>
+            </div>
+        </div>
+
+        <!-- Scroll-down Content (YouTube Video) -->
+        <div class="scroll-content" style="background-color: #ccc;">
+            <div style="margin-left: 200px;">
+                <h3>Check Out Our Latest Video!</h3>
+                <p>Learn more about how our platform works and its features.</p>
+            </div>
+            <iframe width="160" height="315" src="https://www.youtube.com/embed/H4qFdwb2N64?si=h6d0OFCv6emYyIEy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>     
+           </div>
+    
+             
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Student and Teacher Portal - All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Toggle the mobile navbar
+        function toggleMenu() {
+            const navbarLinks = document.getElementById('navbar-links');
+            navbarLinks.classList.toggle('show');
+        }
+    </script>
+ </main>
+  
+    
+ </body>
+</html>

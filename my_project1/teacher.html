@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://th.bing.com/th/id/OIP.wJN-Hgc86AqejCPx9k0aCQHaE7?rs=1&pid=ImgDetMain'); /* Add your background image here */
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: rgba(0, 123, 255, 0.8); /* Transparent blue background */
+            padding: 1em 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a i {
+            margin-right: 8px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            transform: scale(1.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Main Section */
+        main {
+            padding: 3em;
+            max-width: 800px;
+            margin: auto;
+            background-image: url('https://th.bing.com/th/id/OIP.wJN-Hgc86AqejCPx9k0aCQHaE7?rs=1&pid=ImgDetMain'); 
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            font-size: 2.5em;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Form Styles */
+        form {
+            margin: 2em 0;
+            padding: 1.5em;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s, transform 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="student.html"><i class="fas fa-user-graduate"></i> Student Page</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Teacher Page</h1>
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
+            <label for="session"><i class="fas fa-calendar"></i> Session:</label>
+            <input type="text" id="session" name="session" placeholder="Enter session name" required>
+
+            <label for="notes"><i class="fas fa-file-upload"></i> Upload Notes:</label>
+            <input type="file" id="notes" name="notes" accept=".pdf,.doc,.docx" required>
+
+            <label for="image"><i class="fas fa-image"></i> Upload Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+
+            <button type="submit"><i class="fas fa-cloud-upload-alt"></i> Upload</button>
+        </form>
+    </main>
+
+    <script>
+        // JavaScript to Enhance Form Submission Animation
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            alert('Uploading files, please wait...');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Records</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .navbar .links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 1em;
+        }
+
+        .navbar .links a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .search-bar input {
+            padding: 5px;
+            font-size: 1em;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .navbar .search-bar input:focus {
+            outline: none;
+        }
+
+        /* Container styles */
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Record section styles */
+        .record-section {
+            margin-bottom: 30px;
+        }
+
+        .record-section h2 {
+            margin-bottom: 10px;
+            color: #007bff;
+            text-align: center;
+        }
+
+        .records {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* Record box styles */
+        .record-box {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+            text-align: center;
+        }
+
+        .record-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .record-box img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .record-box h3 {
+            margin: 0;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .record-box p {
+            margin: 5px 0;
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        .record-box p span {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">School Records</div>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search records...">
+        </div>
+        <div class="links">
+            <a href="#">Home</a>
+            <a href="#">Students</a>
+            <a href="#">Teachers</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Student and Teacher Records</h1>
+
+        <div class="record-section">
+            <h2>Students</h2>
+            <div class="records" id="student-records">
+                <!-- Student records will be populated here -->
+            </div>
+        </div>
+
+        <div class="record-section">
+            <h2>Teachers</h2>
+            <div class="records" id="teacher-records">
+                <!-- Teacher records will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('search-input');
+
+            // Fetch Student Records
+            fetch('students.php')
+                .then(response => response.json())
+                .then(students => {
+                    const studentRecords = document.getElementById('student-records');
+                    populateRecords(studentRecords, students, 'student');
+                });
+
+            // Fetch Teacher Records
+            fetch('teachers.php')
+                .then(response => response.json())
+                .then(teachers => {
+                    const teacherRecords = document.getElementById('teacher-records');
+                    populateRecords(teacherRecords, teachers, 'teacher');
+                });
+
+            // Populate Records
+            function populateRecords(container, records, type) {
+                container.innerHTML = '';
+                records.forEach(record => {
+                    const avatar = record.avatar || 'https://th.bing.com/th/id/OIP.IkLYdobJ8Ux8CAX0AfuXIQHaHa?w=156&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7';
+                    const recordBox = `
+                        <div class="record-box">
+                            <img src="${avatar}" alt="Avatar">
+                            <h3>${record.name}</h3>
+                            <p><span>Age:</span> ${record.age}</p>
+                            <p><span>Telephone:</span> ${record.telephone}</p>
+                            ${
+                                type === 'student'
+                                    ? `
+                                <p><span>Grade:</span> ${record.grade}</p>
+                                <p><span>Performance:</span> ${record.performance || 'N/A'}</p>
+                                <p><span>Disabilities:</span> ${record.disabilities || 'N/A'}</p>
+                            `
+                                    : `
+                                <p><span>Present Days:</span> ${record.present_days}</p>
+                                <p><span>Absent Days:</span> ${record.absent_days}</p>
+                            `
+                            }
+                        </div>
+                    `;
+                    container.innerHTML += recordBox;
+                });
+            }
+
+            // Search Functionality
+            searchInput.addEventListener('input', () => {
+                const filter = searchInput.value.toLowerCase();
+                const recordBoxes = document.querySelectorAll('.record-box');
+
+                recordBoxes.forEach(box => {
+                    const name = box.querySelector('h3').textContent.toLowerCase();
+                    if (name.includes(filter)) {
+                        box.style.display = '';
+                    } else {
+                        box.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

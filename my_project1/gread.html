@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Grades page with YouTube videos, students, and teacher names">
+    <title>Grade Levels and Teacher Info</title>
+
+    <!-- Include external CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Include external JavaScript (optional) -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Grades</a></li>
+            <li><a href="#">Notes</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Grade Levels</h1>
+        <div class="grades-container">
+            <!-- Grades Boxes (1 to 11) -->
+            <div class="grade-box" onclick="showClassPage(1)">
+                <img src="https://via.placeholder.com/100" alt="Grade 1 Image" class="grade-image">
+                <h3>Grade 1</h3>
+            </div>
+            <div class="grade-box" onclick="showClassPage(2)">
+                <img src="https://via.placeholder.com/100" alt="Grade 2 Image" class="grade-image">
+                <h3>Grade 2</h3>
+            </div>
+            <div class="grade-box" onclick="showClassPage(3)">
+                <img src="https://via.placeholder.com/100" alt="Grade 3 Image" class="grade-image">
+                <h3>Grade 3</h3>
+            </div>
+            <div class="grade-box" onclick="showClassPage(4)">
+                <img src="https://via.placeholder.com/100" alt="Grade 4 Image" class="grade-image">
+                <h3>Grade 4</h3>
+            </div>
+            <div class="grade-box" onclick="showClassPage(5)">
+                <img src="https://via.placeholder.com/100" alt="Grade 5 Image" class="grade-image">
+                <h3>Grade 5</h3>
+            </div>
+            <div class="grade-box" onclick="showClassPage(6)">
+                <img src="https://via.placeholder.com/100" alt="Grade 6 Image" class="grade-image">
+                <h3>Grade 6</h3>
+            </div>
+            <div class="grade-box" onclick="showClassPage(7)">
+                <img src="https://via.placeholder.com/100" alt="Grade 7 Image" class="grade-image">
+                <h3>Grade 7</h3>
+            </div>
+            <div class="grade-box" onclick="showClassPage(8)">
+                <img src="https://via.placeholder.com/100" alt="Grade 8 Image" class="grade-image">
+                <h3>Grade 8</h3>
+            </div>
+            <div class="grade-box" onclick="showClassPage(9)">
+                <img src="https://via.placeholder.com/100" alt="Grade 9 Image" class="grade-image">
+                <h3>Grade 9</h3>
+            </div>
+            <div class="grade-box" onclick="showClassPage(10)">
+                <img src="https://via.placeholder.com/100" alt="Grade 10 Image" class="grade-image">
+                <h3>Grade 10</h3>
+            </div>
+            <div class="grade-box" onclick="showClassPage(11)">
+                <img src="https://via.placeholder.com/100" alt="Grade 11 Image" class="grade-image">
+                <h3>Grade 11</h3>
+            </div>
+        </div>
+        
+
+        <!-- YouTube Video Section -->
+        <div id="videoSection" class="video-section">
+            <h2>YouTube Video: <span id="gradeTitle">Grade 1</span></h2>
+            <div class="video-container">
+                <iframe id="videoFrame" width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- Notes Section -->
+        <div class="notes-section">
+            <h2>Notes Section</h2>
+            <textarea id="notesInput" placeholder="Write your notes here..." rows="5" cols="40"></textarea><br>
+            <button onclick="saveNotes()">Save Notes</button>
+        </div>
+
+        <!-- Online Image Section -->
+        <div class="image-section">
+            <h2>Online Image</h2>
+            <img src="https://via.placeholder.com/600x300" alt="Sample Image" class="online-image">
+        </div>
+
+        <!-- Student and Teacher Information -->
+        <div class="info-section">
+            <h2>Student and Teacher Info</h2>
+            <div class="student-teacher-info">
+                <div class="teacher-info">
+                    <h3>Teacher:</h3>
+                    <p id="teacher-name">John Doe</p>
+                </div>
+                <div class="student-info">
+                    <h3>Student:</h3>
+                    <p id="student-name">Jane Smith</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Function to handle grade box click and navigation
+        function showClassPage(gradeNumber) {
+            // Update the title and video based on the grade clicked
+            document.getElementById('gradeTitle').textContent = "Grade " + gradeNumber;
+
+            // Here you can replace the video link based on the grade
+            const videoFrame = document.getElementById('videoFrame');
+            videoFrame.src = `https://www.youtube.com/embed/VIDEO_ID_FOR_GRADE_${gradeNumber}`;
+
+            // Optionally, navigate to a class-specific page
+            // window.location.href = `class${gradeNumber}.html`; // Uncomment to navigate to the page
+        }
+
+        // Function to save notes
+        function saveNotes() {
+            const notes = document.getElementById('notesInput').value;
+            alert("Notes Saved:\n" + notes);  // In a real-world app, you'd save this data to a database or server
+        }
+    </script>
+
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('https://via.placeholder.com/1500x1000');
+            background-size: cover;
+            color: white;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li {
+            float: left;
+        }
+
+        .navbar li a {
+            color: white;
+            padding: 14px 20px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .navbar li a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        /* Grade Boxes */
+        .grades-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .grade-box {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 30px;
+            width: 180px;
+            height: 180px;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .grade-box h3 {
+            font-size: 1.8em;
+            margin: 0;
+        }
+
+        /* Hover effect */
+        .grade-box:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        /* Notes Section */
+        .notes-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+        }
+
+        #notesInput {
+            padding: 10px;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        /* Online Image Section */
+        .image-section {
+            margin-top: 40px;
+        }
+
+        .online-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Video Section */
+        .video-section {
+            margin-top: 40px;
+        }
+
+        .video-container iframe {
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Info Section */
+        .info-section {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .student-teacher-info {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .teacher-info, .student-info {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 25px;
+            border-radius: 15px;
+            width: 200px;
+        }
+
+        .student-info p, .teacher-info p {
+            font-size: 1.2em;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .grades-container {
+                flex-direction: column;
+            }
+
+            .student-teacher-info {
+                flex-direction: column;
+            }
+        }
+    </style>
+</body>
+</html>

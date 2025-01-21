@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+       /* Navigation Bar Styling */
+nav {
+    background-color: #007BFF;
+    padding: 1em 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #FFDD40;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Logo Styling */
+nav ul li img {
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+nav ul li img:hover {
+    transform: rotate(360deg) scale(1.1);
+    transition: transform 0.6s ease-in-out;
+}
+
+
+        main {
+            padding: 3em;
+            max-width: 1000px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0056b3;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .button-container button {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #007BFF, #0056b3);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .button-container button:hover {
+            background: linear-gradient(45deg, #0056b3, #007BFF);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-container i {
+            font-size: 1.2em;
+        }
+
+        #images {
+            margin-top: 3em;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .image-gallery div {
+            background-color: #fff;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease-in-out;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image-gallery div:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-gallery img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-gallery h3 {
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        .image-gallery a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #007BFF, #0056b3);
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.3s ease-in-out;
+        }
+
+        .image-gallery a:hover {
+            background: linear-gradient(45deg, #0056b3, #007BFF);
+            transform: translateY(-3px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 1em;
+            background: linear-gradient(45deg, #007BFF, #0056b3);
+            color: white;
+            font-size: 1em;
+            margin-top: 3em;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li>
+                <a href="index.html">
+                    <img src="https://th.bing.com/th/id/OIP.QF7Wsk41KL3d7qLSMpjyegHaJQ?w=147&h=184&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="Logo" style="height: 40px; vertical-align: middle;">
+                </a>
+            </li>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="teacher.html"><i class="fas fa-chalkboard-teacher"></i> Teacher Page</a></li>
+        </ul>
+    </nav>
+    
+
+    <!-- Main Content -->
+    <main>
+        <h1>Student Page</h1>
+
+        <!-- Display download buttons for each session -->
+        <section id="sessions">
+            <h2>Available Sessions</h2>
+            <div class="button-container">
+                <button onclick="window.location.href='download.php?session=Session1&type=notes'">Download Session 1 Notes</button>
+                <button onclick="window.location.href='download.php?session=Session1&type=image'">Download Session 1 Images</button>
+            </div>
+            <div class="button-container">
+                <button onclick="window.location.href='download.php?session=Session2&type=notes'">Download Session 2 Notes</button>
+                <button onclick="window.location.href='download.php?session=Session2&type=image'">Download Session 2 Images</button>
+            </div>
+            <div class="button-container">
+                <button onclick="window.location.href='download.php?session=Session3&type=notes'">Download Session 3 Notes</button>
+                <button onclick="window.location.href='download.php?session=Session3&type=image'">Download Session 3 Images</button>
+            </div>
+            <div class="button-container">
+                <button onclick="window.location.href='download.php?session=Session1&type=notes'">Download Session 4 Notes</button>
+                <button onclick="window.location.href='download.php?session=Session1&type=image'">Download Session 4 Images</button>
+            </div>
+            <div class="button-container">
+                <button onclick="window.location.href='download.php?session=Session2&type=notes'">Download Session 5 Notes</button>
+                <button onclick="window.location.href='download.php?session=Session2&type=image'">Download Session 5 Images</button>
+            </div>
+            <div class="button-container">
+                <button onclick="window.location.href='download.php?session=Session3&type=notes'">Download Session 6 Notes</button>
+                <button onclick="window.location.href='download.php?session=Session3&type=image'">Download Session 6 Images</button>
+            </div>
+        </section>
+
+        <!-- Uploaded Images Section -->
+        <section id="images">
+            <h2>Uploaded Images</h2>
+            <div class="image-gallery">
+                <!-- Example Image Gallery -->
+                <div>
+                    <h3>Session 1</h3>
+                    <img src="https://th.bing.com/th/id/OIP.FbakeYpTbeDjSe_h_mVc_AHaEK?rs=1&pid=ImgDetMain" alt="Session 1 Image 1">
+                    <a href="download.php?session=Session1&type=image" class="button-container">Download Image</a>
+                </div>
+                <div>
+                    <h3>Session 2</h3>
+                    <img src="https://th.bing.com/th/id/OIP.cBf8fFCwpcUsyZwdqoMwlAHaEH?w=1065&h=592&rs=1&pid=ImgDetMain" alt="Session 2 Image 1">
+                    <a href="download.php?session=Session2&type=image" class="button-container">Download Image</a>
+                </div>
+                <div>
+                    <h3>Session 3</h3>
+                    <img src="https://th.bing.com/th/id/OIF.KGcOHzB1KWdQZRJ5zsdznA?w=259&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="Session 3 Image 1">
+                    <a href="download.php?session=Session3&type=image" class="button-container">Download Image</a>
+                </div>
+                <div>
+                    <h3>Session 4</h3>
+                    <img src="https://th.bing.com/th/id/OIP.CrSDs1gmcrzEP1onHZu8WQHaE7?pid=ImgDet&w=194&h=129&c=7&dpr=1.4" alt="Session 4 Image 1">
+                    <a href="download.php?session=Session4&type=image" class="button-container">Download Image</a>
+                </div>
+                <div>
+                    <h3>Session 5</h3>
+                    <img src="https://th.bing.com/th/id/OIP.cBf8fFCwpcUsyZwdqoMwlAHaEH?w=1065&h=592&rs=1&pid=ImgDetMain" alt="Session 5 Image 1">
+                    <a href="download.php?session=Session5&type=image" class="button-container">Download Image</a>
+                </div>
+                <div>
+                    <h3>Session 6</h3>
+                    <img src="https://th.bing.com/th/id/OIP.pALSdhwYiGQZMEWqtsTQfQHaEo?w=272&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="Session 6 Image 1">
+                    <a href="download.php?session=Session6&type=image" class="button-container">Download Image</a>
+                </div>
+                <div>
+                    <h3>Session 7</h3>
+                    <img src="https://th.bing.com/th?id=OIF.asCaYw5kMBU0tX9m7%2b7WQw&w=285&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="Session 7 Image 1">
+                    <a href="download.php?session=Session7&type=image" class="button-container">Download Image</a>
+                </div>
+                <div>
+                    <h3>Session 8</h3>
+                    <img src="https://th.bing.com/th?id=OIF.0LBBvzgtG5Iztst9QpR%2biw&rs=1&pid=ImgDetMain" alt="Session 8 Image 1">
+                    <a href="download.php?session=Session8&type=image" class="button-container">Download Image</a>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Student Portal - All Rights Reserved</p>
+    </footer>
+</body>
+</html>
